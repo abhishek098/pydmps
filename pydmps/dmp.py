@@ -152,17 +152,15 @@ class DMPs(object):
     def rollout(self, timesteps=None, goal=None, y0=None, **kwargs):
         """Generate a system trial, no feedback is incorporated."""
 
-        self.reset_state()
-
-
         if goal is not None:
             self.goal = goal
 
         if y0 is not None:
             self.y0 = y0
 
-        print("goal is", self.goal)
-        print(self.y0)
+        print("y0 is", self.y0)
+
+        self.reset_state()
 
         if timesteps is None:
             if 'tau' in kwargs:

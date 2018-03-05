@@ -23,16 +23,20 @@ import pydmps
 import pydmps.dmp_discrete
 
 y_des = np.load('2.npz')['arr_0'].T
+print(y_des)
 y_des -= y_des[:, 0][:, None]
+print(y_des[:, 0][:, None])
+
 
 # test normal run
-dmp = pydmps.dmp_discrete.DMPs_discrete(n_dmps=2, n_bfs=500, ay=np.ones(2)*10.0)
+dmp = pydmps.dmp_discrete.DMPs_discrete(n_dmps=2, n_bfs=30, ay=np.ones(2)*10.0)
 y_track = []
 dy_track = []
 ddy_track = []
-
 dmp.imitate_path(y_des=y_des, plot=True)
-y_track, dy_track, ddy_track = dmp.rollout()
+goal = np.array([1.5, -1.8])
+y0 = np.array([0.2, -0.2])
+y_track, dy_track, ddy_track = dmp.rollout(goal=goal, y0=y0)
 plt.figure(1, figsize=(6,6))
 
 plt.plot(y_track[:,0], y_track[:, 1], 'b', lw=2)

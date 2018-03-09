@@ -110,6 +110,7 @@ class DMPs_discrete(DMPs):
                 denom = np.sum(x_track**2 * psi_track[:, b])
                 self.w[d, b] = numer / (k * denom)
         self.w = np.nan_to_num(self.w)
+        return self.w
 
 # ==============================
 # Test code
